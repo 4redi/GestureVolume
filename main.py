@@ -22,8 +22,8 @@ volumeRange=volume.GetVolumeRange()
 minvol=volumeRange[0]
 maxvol=volumeRange[1]
 vol=0
-volBar=400
-volPercent=0
+VolumeBar=400
+volumePercent=0
 #****************************************************#
 cap=cv2.VideoCapture(0)
 cap.set(3,wCam)
@@ -49,8 +49,8 @@ while True:
         # print(length)
 
         vol=np.interp(length,[50,300],[minvol,maxvol])
-        volBar=np.interp(length,[50,300],[400,150])
-        volPercent=np.interp(length,[50,300],[0,100])
+        VolumeBar=np.interp(length,[50,300],[400,150])
+        volumePercent=np.interp(length,[50,300],[0,100])
         print(int(length),vol)
         volume.SetMasterVolumeLevel(vol, None)
 
@@ -64,8 +64,8 @@ while True:
             cv2.circle(img,(cx,cy),15,(0,255,255),cv2.FILLED)
 
     cv2.rectangle(img,(50,150),(85,400),(0,255,0),3)
-    cv2.rectangle(img,(50,int(volBar)),(85,400),(0,255,0),cv2.FILLED)
-    cv2.putText(img,f'{int(volPercent)}%',(40,450),cv2.FONT_HERSHEY_COMPLEX,1,(0,255,0),3)
+    cv2.rectangle(img,(50,int(VolumeBar)),(85,400),(0,255,0),cv2.FILLED)
+    cv2.putText(img,f'{int(volumePercent)}%',(40,450),cv2.FONT_HERSHEY_COMPLEX,1,(0,255,0),3)
 
     ctime=time.time()
     fps=1/(ctime-ptime)
